@@ -1,5 +1,3 @@
-#define BLIMP_ID 5
-
 #if !defined(COMS_H)
   #include "coms.h"
 #endif
@@ -32,16 +30,18 @@ void do_intr()
 
 
 
-
+int i = 0;
 void loop() {
   //Serial.println("-------");
   long tick = millis();
 
+  i++;
+  printUDP(i);
 //  get_coms();
   do_intr();
 
   long tock = millis();
   //Serial.println(tock-tick);
-  delay(5);
+  delay(500);
 
 }

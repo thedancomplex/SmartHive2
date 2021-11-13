@@ -1,6 +1,7 @@
 #define COMS_H 1
 
 #define HOSTNAME "beenet-frame-0"
+#define SEND_UDP "10.4.0.90"
 
 #ifndef STASSID
 //#define STASSID "ankiNet-2.4ghz"
@@ -23,6 +24,7 @@ char  ReplyBuffer[] = "acknowledged\r\n";       // a string to send back
 WiFiUDP Udp;
 
 void coms_setup(){
+  WiFi.hostname(HOSTNAME);
   WiFi.mode(WIFI_STA);
   WiFi.begin(STASSID, STAPSK);
   while (WiFi.status() != WL_CONNECTED) {
@@ -35,4 +37,42 @@ void coms_setup(){
   Udp.begin(localPort);
 
 
+}
+
+
+void printUDP(double s);
+void printUDP(float s);
+void printUDP(char s);
+void printUDP(int s);
+void printUDP(String s);
+
+void printUDP(double s)
+{
+  printUDP(String(s));
+}
+
+void printUDP(float s)
+{
+  printUDP(String(s));
+}
+
+void printUDP(char s)
+{
+  printUDP(String(s));
+}
+
+void printUDP(int s)
+{
+  printUDP(String(s));
+}
+
+void printUDP(String s)
+{
+  char tx[100];
+  s.toCharArray(tx, s.length()+1);
+  Udp.beginPacket(SEND_UDP, localPort);
+  //Udp.beginPacket(Udp.remoteIP(), localPort);
+  
+  Udp.write(tx);
+  Udp.endPacket();
 }
