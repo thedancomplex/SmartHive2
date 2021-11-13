@@ -1,5 +1,12 @@
+#define FRAME_ID 1
+#define HOSTNAME "beenet-frame-1"
+
 #if !defined(COMS_H)
   #include "coms.h"
+#endif
+
+#if !defined(TEMP_H)
+  #include "temp.h"
 #endif
 
 #if !defined(INTR_H)
@@ -13,6 +20,7 @@
 void setup() {
   Serial.begin(115200);
   coms_setup();
+  temp_setup();
   intr_setup(1.0);
 }
 
@@ -42,6 +50,7 @@ void loop() {
 
   long tock = millis();
   //Serial.println(tock-tick);
+  printUDP(temp_get());
   delay(500);
 
 }

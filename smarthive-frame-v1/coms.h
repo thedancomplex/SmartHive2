@@ -1,6 +1,5 @@
 #define COMS_H 1
 
-#define HOSTNAME "beenet-frame-0"
 #define SEND_UDP "10.4.0.90"
 
 #ifndef STASSID
