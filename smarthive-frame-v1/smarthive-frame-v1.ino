@@ -1,5 +1,5 @@
-#define FRAME_ID 1
-#define HOSTNAME "beenet-frame-1"
+#define FRAME_ID 4
+#define HOSTNAME "beenet-frame-4"
 
 #if !defined(COMS_H)
   #include "coms.h"
@@ -44,13 +44,11 @@ void loop() {
   long tick = millis();
 
   i++;
-  printUDP(i);
-//  get_coms();
   do_intr();
 
   long tock = millis();
   //Serial.println(tock-tick);
   printUDP(temp_get());
-  delay(500);
+  delay(5000);
 
 }
